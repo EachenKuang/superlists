@@ -4,6 +4,7 @@ class NewVisitorTest(unittest.TestCase): #➊
 
 	def setUp(self): #➋
 		self.browser = webdriver.Chrome()
+		self.browser.implicitly_wait(3)
 
 	def tearDown(self): #➌
 		self.browser.quit()
