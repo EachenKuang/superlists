@@ -62,7 +62,7 @@ class NewVisitorTest(LiveServerTestCase):
         # 我们使用一个新浏览器会话
         # 确保伊迪丝的信息不会从cookie中泄露出来
         self.browser.quit()
-        self.browser = webdriver.Firefox()
+        self.browser = webdriver.Chrome()
 
         # 弗朗西斯访问首页
         # 页面中看不到伊迪丝的清单
