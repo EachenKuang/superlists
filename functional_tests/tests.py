@@ -9,13 +9,6 @@ import time
 
 class NewVisitorTest(StaticLiveServerTestCase):
 
-    def setUp(self):
-        self.browser = webdriver.Chrome()
-
-    def tearDown(self):
-        self.browser.refresh()
-        self.browser.quit()
-
     @classmethod
     def setUpClass(cls):
         for arg in sys.argv:
@@ -29,6 +22,13 @@ class NewVisitorTest(StaticLiveServerTestCase):
     def tearDownClass(cls):
         if cls.server_url == cls.live_server_url:
             super().tearDownClass()
+
+    def setUp(self):
+        self.browser = webdriver.Chrome()
+
+    def tearDown(self):
+        self.browser.refresh()
+        self.browser.quit()
 
     def check_for_row_in_list_table(self, row_text):
         table = self.browser.find_element_by_id('id_list_table')
