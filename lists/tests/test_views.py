@@ -1,17 +1,19 @@
 from django.test import TestCase
-from django.urls import resolve
-
-from lists.views import home_page
-from lists.models import Item, List
-
 from django.utils.html import escape
+
+from lists.models import Item, List
+from lists.forms import ItemForm
 
 
 class HomePageTest(TestCase):
 
-    def test_root_url_resolves_to_home_page_view(self):
-        found = resolve('/')
-        self.assertEqual(found.func, home_page)
+    def test_home_page_renders_home_template(self):
+        response = self.client.get('/')
+        self.assertTemplateUsed(response, 'home.html')
+
+    def test_home_page_uses_item_form(self):
+        response = self.client.get('/')
+        self.assertIsInstance(response.context['form'], ItemForm)
 
 
 class ListViewTest(TestCase):
@@ -60,7 +62,6 @@ class ListViewTest(TestCase):
         )
 
         self.assertRedirects(response, '/lists/%d/' % (correct_list.id,))
-
 
     def test_validation_errors_end_up_on_lists_page(self):
         list_ = List.objects.create()
