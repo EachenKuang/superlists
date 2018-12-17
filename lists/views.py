@@ -28,3 +28,4 @@ def new_list(request):
         return render(request, 'home.html', {"form": form})
 
 
+

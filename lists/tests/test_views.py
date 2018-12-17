@@ -4,6 +4,7 @@ from django.utils.html import escape
 from lists.models import Item, List
 from lists.forms import ItemForm, EMPTY_LIST_ERROR
 
+
 class HomePageTest(TestCase):
 
     def test_home_page_renders_home_template(self):
